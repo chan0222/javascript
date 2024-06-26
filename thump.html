@@ -31,50 +31,32 @@
           $button.disabled = true;
         }
       };
-
-      const onClickButton = () => {
-        console.log("버튼 눌림");
-        if (newWord.length === 3) {
-          // 제시어가 3글자 임
-          if (!word) {
-            // 제시어가 비어있는 경우 첫제시어가 됨
-            word = newWord;
-            $word.textContent = word; // span의 값을 넣어줌;
-            $input.value = "";
-            // 다음 순서로 넘어간다.
-            nextOrder();
-          } else {
-            // 제시어 뒤글자와 자신의 앞글자가 같은지 확인
-            if (word[word.length - 1] === newWord[0]) {
-              //다음 순서로 넘어간다.
-              nextOrder();
-              word = newWord;
-              $word.textContent = word; // span의 값을 넣어줌;
-              $input.value = "";
-            } else {
-              alert("제시어의 뒷 글자와 해당 앞자리가 같지 않습니다.");
-              $input.value = "";
-            }
-          }
-        } else {
-          //제시어가 3글자가 아님
-          alert("3글자로 다시 입력해 주세요.");
-          $input.value = "";
-        }
-      };
       const onInput = (event) => {
         newWord = event.target.value; // 단어 입력한것을 newWord 변수에 저장
       };
+      const onClickButton = () => {
+        if (newWord.length === 3 && (!word || word[word.length - 1] === newWord[0])  
+        ) {
+          //제시어가 비어있다. (첫 제시어가 되어야함)
+          word = newWord;
+          $word.textContent = word; // span의 값을 넣어줌;
+          // 다음 순서로 넘어간다.
+          const order = parseInt($order.textContent); // 현재순서
 
-      const nextOrder = () => {
-        const order = parseInt($order.textContent); // 현재순서
-        if (order + 1 > number) {
-          $order.textContent = 1;
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
         } else {
-          $order.textContent = order + 1;
+          //올바르지 않음
+          alert("올바르지 않는 단어입니다.");
         }
+        $input.value = "";
+        $input.focus();
       };
 
+     
       window.addEventListener("load", yesOrNo);
       $input.addEventListener("input", onInput);
       $button.addEventListener("click", onClickButton);
