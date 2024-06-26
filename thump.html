@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>쿵쿵따 게임</title>
-</head>
-<body>
+  </head>
+  <body>
     <div><span id="order">1</span>번째 참가자</div>
     <div>제시어<span id="word"></span></div>
-    <input type="text">
+    <input type="text" />
     <button>입력</button>
     <script>
-        const number = parseInt(prompt('몇 명이 참가하나요?'),10);
-        const $order = document.querySelector('#order');
-        const $word = document.querySelector('#word');
-        const $input = document.querySelector('input');
-        const $button = document.querySelector('button');
-        let word; //제시어
-        let newWord; // 새로입력한 단어
+       const participation = prompt("몇 명이 참가하나요?");
+      const number = parseInt( participation, 10);
+      const $order = document.querySelector("#order");
+      const $word = document.querySelector("#word");
+      const $input = document.querySelector("input");
+      const $button = document.querySelector("button");
+      let word; //제시어
+      let newWord; // 새로입력한 단어
+
+      const yesOrNo = () => {
+        if(participation !== null){// 프롬트 결과 값이 있으면 
+            
+        }else{ // 프롬트 결과 값이 취소라고 눌렀으면 
+            //다음 코드가 실행되지 않게 로직 
+            alert('참가가 취소되었습니다.');
+            $input.disabled = true;
+            $button.disabled =true;
+        }
+      };
+     
+      const onClickButton = () => {};
+
+      window.addEventListener("load",yesOrNo);
     </script>
-</body>
+  </body>
 </html>
