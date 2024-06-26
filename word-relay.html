@@ -1,42 +1,66 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>끝말잇기</title>
     <style></style>
-</head>
+  </head>
 
-<body>
-  <div><span id="order">1</span>번째 참가자</div>   
-  <div>제시어<span id="word">1</span></div>
-  <input type="text">  
-  <button>입력</button>
-  <script>
-  const number = parseInt(prompt('몇 명이 참가하나요?'),10); // 넘버가 문자열이어서 숫자로 바꿔야함
-  const $button = document.querySelector('button');
-  const $input = document.querySelector('input');
-  const $word = document.querySelector('#word');
-  let word; //제시어
-  let newword; //새로 입력한 단어
+  <body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>제시어 : <span id="word">1</span></div>
+    <input type="text" />
+    <button>입력</button>
+    <script>
+      const number = parseInt(prompt("몇 명이 참가하나요?"), 10); // 넘버가 문자열이어서 숫자로 바꿔야함
+      const $button = document.querySelector("button");
+      const $input = document.querySelector("input");
+      const $word = document.querySelector("#word");
+      const $order = document.querySelector("#order");
+      let word; //제시어
+      let newword; //새로 입력한 단어
 
-  const onClickButton = () => {
-    if(!word){
-      //제시어가 비어있는 경우 첫번째 제시자
-      word = newword; // 입력된 단어가 제시어가 된다.
-      $word.textContent = word; //span의 값을 넣어줌
-    } else {
-      //제시어가 있는 경우 
-    }
-  };
-  const onInput = (event) => {
-    newword = event.taget.value; //단어 입력한것을 newword 변수에 저장
-  };
+      const onClickButton = () => {
+        if (!word) {
+          //제시어가 비어있는 경우 첫번째 제시자
+          word = newword; // 입력된 단어가 제시어가 된다.
+          $word.textContent = word; //span의 값을 넣어줌
+          $input.value = ""; // 빈값으로 다시 초기화
+          const order = parseInt($order.textContent); // 현재 순서
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } 
+          else {
+            $order.textContent = order + 1;
+          }
+        }
+        else {
+          //제시어가 있는 경우
+          if (word[word.length - 1] === newword[0]) {
+            // 올바른가
+            word = newword;
+            $word.textContent = word;
+            $input.value = "";
+            const order = parseInt($order.textContent); // 현재 순서
+            if (order + 1 > number) {
+              $order.textContent = 1;
+            } else {
+              $order.textContent = order + 1;
+            }
+          } 
+          else {
+            //올바르지 않는가
+            alert('올바르지 않다. ')
+          }
+        }
+      };
+      const onInput = (event) => {
+        newword = event.target.value; //단어 입력한것을 newword 변수에 저장
+      };
 
-  $button.addEventListener('click',onClickButton);
-  $input.addEventListener('input',onInput);
-    
-  </script> 
-</body> 
-
+      $button.addEventListener("click", onClickButton);
+      $input.addEventListener("input", onInput);
+    </script>
+  </body>
 </html>
