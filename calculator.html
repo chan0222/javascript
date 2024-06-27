@@ -52,6 +52,7 @@
         }); // 왜 += ? 숫자가 이미 입력되었을때 다른 숫자를 뒹 더 붙일때 사용!! 1자리 숫자를 2자리 숫자로!
         document.querySelector('#num-1').addEventListener('click',()=>{
             if(!operator){numOne += '1';}else{numTwo += '1';}
+            $result.value += '1';
         });
         document.querySelector('#num-2').addEventListener('click',()=>{
             if(!operator){numOne += '2';}else{numTwo += '2';}
