@@ -13,7 +13,7 @@
 </head>
 <!-- 계산기 버튼 구현  -->
 <body>
-    <input readonly id="operator">
+    <input readonly id="operator"> // readonly 사용자가 키보드로는 입력할수 없고 자바스크립트로만 입력할수 있음 계산기의 결과로만 쓸수 있게 함 
     <input readonly type="number" id="result">
     <div class="row">
         <button id="num-7">7</button>
@@ -39,7 +39,33 @@
         <button id="calculate">=</button>
         <button id="multiply">X</button>
     </div>
-    <script></script>
+    <script>
+        let numOne = '';
+        let numTwo = '';
+        let operator = '';
+        const $operator = document.querySelector('#operator');
+        const $result = document.querySelector('#result');
+        document.querySelector('#num-0').addEventListener('click',()=>{
+            if(!operator){//비어있다.
+                numOne += '0';}else{ //비어있지 않다. 
+                    numTwo += '0';} // numOne = numOne + event.target.textcontent 현재 모두 문자열인 상태
+        }); // 왜 += ? 숫자가 이미 입력되었을때 다른 숫자를 뒹 더 붙일때 사용!! 1자리 숫자를 2자리 숫자로!
+        document.querySelector('#num-1').addEventListener('click',()=>{});
+        document.querySelector('#num-2').addEventListener('click',()=>{});
+        document.querySelector('#num-3').addEventListener('click',()=>{});
+        document.querySelector('#num-4').addEventListener('click',()=>{});
+        document.querySelector('#num-5').addEventListener('click',()=>{});
+        document.querySelector('#num-6').addEventListener('click',()=>{});
+        document.querySelector('#num-7').addEventListener('click',()=>{});
+        document.querySelector('#num-8').addEventListener('click',()=>{});
+        document.querySelector('#num-9').addEventListener('click',()=>{});
+        document.querySelector('#plus').addEventListener('click',()=>{});
+        document.querySelector('#minus').addEventListener('click',()=>{});
+        document.querySelector('#divide').addEventListener('click',()=>{});
+        document.querySelector('#multiply').addEventListener('click',()=>{});
+        document.querySelector('#calculate').addEventListener('click',()=>{});
+        document.querySelector('#clear').addEventListener('click',()=>{});
+    </script>
 
 </body>
 </html>
