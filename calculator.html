@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<body>
+    <div>숫자1<input type="number" id="first"></div>
+    <div>사칙연산<input type="text" id="operations"></div>
+    <div>숫자2<input type="number" id="second"></div>
+    <button>버튼</button>
+    <div>결과값<span id="result"></span></div>
+    <script>
+        const $first = document.querySelector('#first');
+        const $operations = document.querySelector('#operations');
+        const $second = document.querySelector('#second');
+        const $result = document.querySelector('#result');
+        const $button = document.querySelector('button');
+        let first;
+        let operations;
+        let second;
+        let result;
+
+        const onClickButton = () =>{
+            if(!first && !operations && !second){// 입력된 값이 없으면 연산이 안됨
+                alert('계산할 숫자를 채워주세요');
+            }else{// 숫자와 연산자가 다 있음 그럼 어떻게 연산을 하지?
+               $result.textContent= parseInt(first) +parseInt(second);
+               result=$result.textContent;
+               console.log(result);
+
+            }
+        }
+
+        const onInput1=(event)=>{
+            first = event.target.value;
+        }
+        const onInput2=(event)=>{
+            operations = event.target.value;  
+        }
+        const onInput3=(event)=>{
+            second = event.target.value;
+        }
+        $button.addEventListener('click',onClickButton);
+$first.addEventListener('input',onInput1);
+$operations.addEventListener('input',onInput2);
+$second.addEventListener('input',onInput3);
+
+
+    </script>
+
+</body>
+</html>
