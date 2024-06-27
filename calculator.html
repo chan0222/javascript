@@ -124,9 +124,22 @@
       document
         .querySelector("#multiply")
         .addEventListener("click", onClickOperator("*"));
+
+        const onClickCalculate =()=>{
+            if(!numTwo){alert('숫자를 입력하시오')}
+            else{
+                switch(operator){
+                    case '+': $result.value = parseInt(numOne)+ parseInt(numTwo); break;
+                    case '-': $result.value = parseInt(numOne)- parseInt(numTwo); break;
+                    case '*': $result.value = parseInt(numOne)* parseInt(numTwo); break;
+                    case '/': $result.value = parseInt(numOne)/ parseInt(numTwo); break;
+                    default: break;
+                }
+            }
+        }
       document
         .querySelector("#calculate")
-        .addEventListener("click", onClickOperator("="));
+        .addEventListener("click", onClickCalculate);
       document.querySelector("#clear").addEventListener("click", () => {});
     </script>
   </body>
