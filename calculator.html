@@ -46,8 +46,10 @@
         const $operator = document.querySelector('#operator');
         const $result = document.querySelector('#result');
         const onClickNumber=(number)=>{
-            if(!operator){numOne += number;}else{numTwo += number;}
-            $result.value += number;
+            return ()=>{
+                if(!operator){numOne += number;}else{numTwo += number;}
+                $result.value += number;
+            }
         }
         document.querySelector('#num-0').addEventListener('click',onClickNumber('0'));
         document.querySelector('#num-1').addEventListener('click',onClickNumber('1'));
