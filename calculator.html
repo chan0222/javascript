@@ -57,6 +57,7 @@
       let numOne = "";
       let numTwo = "";
       let operator = "";
+      //''가 선언되어 있어야 +를 할 때 문자열이 저장됩니다. '' + 5 === '5'; 그게 없으면 undefined라서 undefined + 5 === NaN
       const $operator = document.querySelector("#operator");
       const $result = document.querySelector("#result");
       const onClickNumber = (number) => () => {
@@ -128,14 +129,12 @@
         const onClickCalculate =()=>{
             if(!numTwo){alert('숫자를 입력하시오')}
             else{
-                switch(operator){
-                    case '+': $result.value = parseInt(numOne)+ parseInt(numTwo); break;
-                    case '-': $result.value = parseInt(numOne)- parseInt(numTwo); break;
-                    case '*': $result.value = parseInt(numOne)* parseInt(numTwo); break;
-                    case '/': $result.value = parseInt(numOne)/ parseInt(numTwo); break;
-                    default: break;
-                }
+               if(operator === '+'){$result.value = parseInt(numOne)+ parseInt(numTwo); return;}
+            if(operator === '-'){$result.value = parseInt(numOne)- parseInt(numTwo); return;}
+            if(operator === '*'){$result.value = parseInt(numOne)* parseInt(numTwo); return;}
+            if(operator === '/'){$result.value = parseInt(numOne)/ parseInt(numTwo); return;}
             }
+           
         }
       document
         .querySelector("#calculate")
@@ -144,3 +143,11 @@
     </script>
   </body>
 </html>
+
+<!-- switch(operator){
+    case '+': $result.value = parseInt(numOne)+ parseInt(numTwo); break;
+    case '-': $result.value = parseInt(numOne)- parseInt(numTwo); break;
+    case '*': $result.value = parseInt(numOne)* parseInt(numTwo); break;
+    case '/': $result.value = parseInt(numOne)/ parseInt(numTwo); break;
+    default: break;
+} -->
