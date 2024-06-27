@@ -126,16 +126,23 @@
         .querySelector("#multiply")
         .addEventListener("click", onClickOperator("*"));
 
-        const onClickCalculate =()=>{
-            if(!numTwo){alert('숫자를 입력하시오')}
-            else{
-               if(operator === '+'){$result.value = parseInt(numOne)+ parseInt(numTwo); return;}
-            if(operator === '-'){$result.value = parseInt(numOne)- parseInt(numTwo); return;}
-            if(operator === '*'){$result.value = parseInt(numOne)* parseInt(numTwo); return;}
-            if(operator === '/'){$result.value = parseInt(numOne)/ parseInt(numTwo); return;}
-            }
-           
+      const onClickCalculate = () => {
+        if (!numTwo) {
+          alert("숫자를 입력하시오");
+        } else {
+          switch (operator) {
+            case "+":
+              $result.value = parseInt(numOne) + parseInt(numTwo); break;
+            case "-":
+              $result.value = parseInt(numOne) - parseInt(numTwo); break;
+            case "*":
+              $result.value = parseInt(numOne) * parseInt(numTwo); break;
+            case "/":
+              $result.value = parseInt(numOne) / parseInt(numTwo); break;
+            default: break;
+          }
         }
+      };
       document
         .querySelector("#calculate")
         .addEventListener("click", onClickCalculate);
@@ -143,11 +150,3 @@
     </script>
   </body>
 </html>
-
-<!-- switch(operator){
-    case '+': $result.value = parseInt(numOne)+ parseInt(numTwo); break;
-    case '-': $result.value = parseInt(numOne)- parseInt(numTwo); break;
-    case '*': $result.value = parseInt(numOne)* parseInt(numTwo); break;
-    case '/': $result.value = parseInt(numOne)/ parseInt(numTwo); break;
-    default: break;
-} -->
