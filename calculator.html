@@ -47,7 +47,10 @@
         const $result = document.querySelector('#result');
         const onClickNumber=(number)=>{
             return ()=>{
-                if(!operator){numOne += number;}else{numTwo += number;}
+                if(!operator){numOne += number;}else{
+                    if(!numTwo){// numtwo가 없는 상황에는 화면의 숫자를 지워라 
+                        $result.value='';}
+                    numTwo += number;}
                 $result.value += number;
             } // 함수가 함수를 리턴하고 있구나 => 고차함수(high order function)
         }
@@ -62,6 +65,7 @@
         document.querySelector('#num-7').addEventListener('click',onClickNumber('7'));
         document.querySelector('#num-8').addEventListener('click',onClickNumber('8'));
         document.querySelector('#num-9').addEventListener('click',onClickNumber('9'));
+
         const onClickOperator=(op)=> ()=>{
             if(numOne){ operator = op; $operator.value = op;} else{'숫자를 먼저 입력하세요'}
         }
@@ -75,3 +79,4 @@
 
 </body>
 </html>
+
