@@ -45,39 +45,20 @@
         let operator = '';
         const $operator = document.querySelector('#operator');
         const $result = document.querySelector('#result');
-        document.querySelector('#num-0').addEventListener('click',()=>{
-            if(!operator){//비어있다.
-                numOne += '0';}else{ //비어있지 않다. 
-                    numTwo += '0';} // numOne = numOne + event.target.textcontent 현재 모두 문자열인 상태
-        }); // 왜 += ? 숫자가 이미 입력되었을때 다른 숫자를 뒹 더 붙일때 사용!! 1자리 숫자를 2자리 숫자로!
-        document.querySelector('#num-1').addEventListener('click',()=>{
-            if(!operator){numOne += '1';}else{numTwo += '1';}
-            $result.value += '1';
-        });
-        document.querySelector('#num-2').addEventListener('click',()=>{
-            if(!operator){numOne += '2';}else{numTwo += '2';}
-        });
-        document.querySelector('#num-3').addEventListener('click',()=>{
-            if(!operator){numOne += '3';}else{numTwo += '3';}
-        });
-        document.querySelector('#num-4').addEventListener('click',()=>{
-            if(!operator){numOne += '4';}else{numTwo += '4';}
-        });
-        document.querySelector('#num-5').addEventListener('click',()=>{
-            if(!operator){numOne += '5';}else{numTwo += '5';}
-        });
-        document.querySelector('#num-6').addEventListener('click',()=>{
-            if(!operator){numOne += '6';}else{numTwo += '6';}
-        });
-        document.querySelector('#num-7').addEventListener('click',()=>{
-            if(!operator){numOne += '7';}else{numTwo += '7';}
-        });
-        document.querySelector('#num-8').addEventListener('click',()=>{
-            if(!operator){numOne += '8';}else{numTwo += '8';}
-        });
-        document.querySelector('#num-9').addEventListener('click',()=>{
-            if(!operator){numOne += '9';}else{numTwo += '9';}
-        });
+        const onClickNumber=(number)=>{
+            if(!operator){numOne += number;}else{numTwo += number;}
+            $result.value += number;
+        }
+        document.querySelector('#num-0').addEventListener('click',onClickNumber('0'));
+        document.querySelector('#num-1').addEventListener('click',onClickNumber('1'));
+        document.querySelector('#num-2').addEventListener('click',onClickNumber('2'));
+        document.querySelector('#num-3').addEventListener('click',onClickNumber('3'));
+        document.querySelector('#num-4').addEventListener('click',onClickNumber('4'));
+        document.querySelector('#num-5').addEventListener('click',onClickNumber('5'));
+        document.querySelector('#num-6').addEventListener('click',onClickNumber('6'));
+        document.querySelector('#num-7').addEventListener('click',onClickNumber('7'));
+        document.querySelector('#num-8').addEventListener('click',onClickNumber('8'));
+        document.querySelector('#num-9').addEventListener('click',onClickNumber('9'));
         document.querySelector('#plus').addEventListener('click',()=>{});
         document.querySelector('#minus').addEventListener('click',()=>{});
         document.querySelector('#divide').addEventListener('click',()=>{});
