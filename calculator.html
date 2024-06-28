@@ -25,10 +25,11 @@
     </style>
   </head>
   <!-- 계산기 버튼 구현  -->
+  <!-- // readonly 사용자가 키보드로는 입력할수없고 자바스크립트로만 입력할수 있음 계산기의 결과로만 쓸수 있게 함 -->
   <body>
-    <input readonly id="operator" /> // readonly 사용자가 키보드로는 입력할수
-    없고 자바스크립트로만 입력할수 있음 계산기의 결과로만 쓸수 있게 함
-    <input readonly type="number" id="result" />
+    <input readonly id="operator" />
+  
+    <input readonly type="text" id="result" />
     <div class="row">
       <button id="num-7">7</button>
       <button id="num-8">8</button>
@@ -57,6 +58,7 @@
       let numOne = "";
       let numTwo = "";
       let operator = "";
+      let negative='';
       //''가 선언되어 있어야 +를 할 때 문자열이 저장됩니다. '' + 5 === '5'; 그게 없으면 undefined라서 undefined + 5 === NaN
       const $operator = document.querySelector("#operator");
       const $result = document.querySelector("#result");
@@ -106,13 +108,26 @@
         .addEventListener("click", onClickNumber("9"));
 
       const onClickOperator = (op) => () => {
-        if (numOne) {
+        if (numOne && ! $operator.value) { // 첫 숫자가 있고 op가 없을때 
           operator = op;
           $operator.value = op;
-        } else {
-          ("숫자를 먼저 입력하세요");
+          return;
+        } 
+        else if (numOne && $operator.value && !numTwo){ // 첫숫자 있고 op 있고  두번째 숫자가 없을때 
+          if(op === '-'){ // 두번째 숫자가 음수 일때 
+            $result.value = "";
+            $result.value += op;
+            numTwo += op; 
+            console.log('두번째 숫자 음수');
+          }
+           
+          }
+        else {
+          // 첫 숫자가 없을때 음수로 만드는 것 
+          if(op==='-'){  numOne +=op;   $result.value += op; } else{alert("숫자를 먼저 입력하세요");}
         }
       };
+
       document
         .querySelector("#plus")
         .addEventListener("click", onClickOperator("+"));
@@ -127,12 +142,14 @@
         .addEventListener("click", onClickOperator("*"));
 
       const onClickCalculate = () => {
+        
         if (!numTwo) {
           alert("숫자를 입력하시오");
         } else {
+          console.log(numOne,numTwo);
           switch (operator) {
             case "+":
-              $result.value = parseInt(numOne) + parseInt(numTwo); break;
+              $result.value = (parseInt(numOne)) + (parseInt(numTwo)); break;
             case "-":
               $result.value = parseInt(numOne) - parseInt(numTwo); break;
             case "*":
@@ -146,6 +163,8 @@
           operator = '';
           numTwo='';
         }
+        console.log($result.value);
+       
       };
       document
         .querySelector("#calculate")
