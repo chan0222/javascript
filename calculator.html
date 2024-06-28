@@ -146,7 +146,15 @@
       document
         .querySelector("#calculate")
         .addEventListener("click", onClickCalculate);
-      document.querySelector("#clear").addEventListener("click", () => {});
+        const onClickClear=()=>{
+         //초기 상태로 되돌리기
+         numOne = '';
+         operator = '';
+         numTwo='';
+         $operator.value = '';
+         $result.value = '';
+        }
+      document.querySelector("#clear").addEventListener("click", onClickClear);
     </script>
   </body>
 </html>
