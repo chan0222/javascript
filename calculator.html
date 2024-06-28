@@ -107,8 +107,8 @@
         .querySelector("#num-9")
         .addEventListener("click", onClickNumber("9"));
 
-      const onClickOperator = (op) => () => {
-        if(numTwo){ 
+        const onClickOperator = (op) => () => {
+        if(numTwo){ // numTwo가 있는 
           console.log('연달아계산 연산자');
           onClickCalculate();
         // 계산결과 값을 결과 인풋 창에 넣고
@@ -117,8 +117,8 @@
           $operator.value = op;
           numTwo = ''; //numTwo초기화
         }
-      else{
-         if (numOne && ! $operator.value) { // 첫 숫자가 있고 op가 없을때 
+      else{// numTwo가 없는 
+         if (numOne && !$operator.value) { // 첫 숫자가 있고 op가 없을때 
           operator = op;
           $operator.value = op;
           return;
@@ -129,10 +129,8 @@
             $result.value += op;
             numTwo += op; 
             console.log('두번째 숫자 음수');
-          
-           
           }
-        else {
+        else {// 첫 숫자가 없고  op가 없을때 
           // 첫 숫자가 없을때 음수로 만드는 것 
           if(op==='-'){  numOne +=op;   $result.value += op; } 
         }
