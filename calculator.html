@@ -124,7 +124,16 @@
           }
         else {
           // 첫 숫자가 없을때 음수로 만드는 것 
-          if(op==='-'){  numOne +=op;   $result.value += op; } else{alert("숫자를 먼저 입력하세요");}
+          if(op==='-'){  numOne +=op;   $result.value += op; } 
+        }
+        if(numTwo){ 
+          console.log('연달아계산 연산자');
+          onClickCalculate();
+        // 계산결과 값을 결과 인풋 창에 넣고
+          numOne = $result.value;
+          operator = op;
+          $operator.value = op;
+          numTwo = ''; //numTwo초기화
         }
       };
 
