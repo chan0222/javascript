@@ -18,8 +18,18 @@
         const $form = document.querySelector('#form');
         const $logs= document.querySelector('#logs');
 
-        let answer;
-        for(let i = answer.length; i < 5;){Math.floor(Math.random*9+1)= answer;}
+      const numbers = []; // 숫자를 1-9까지 담아놓고 
+      for(let n = 0; n<9;n+=1){
+        numbers.push(n+1);
+        console.log(numbers);
+      }
+      const answer = [];
+      for(let i = 0; i <4; i+=1){
+       const index= Math.floor(Math.random()*numbers.length); // 0-8 정수 왜? 숫자를 고를땐 index로 고르니까 numbers.[4]=3 ; 맨처음은 1이 아니라 0이어서 
+       answer.push(numbers[index]);
+       numbers.splice(index,1); // 실제로 뽑았으니까 해당 숫자를 빼줌
+      }
+      console.log(answer);
     </script>
 </body>
 
