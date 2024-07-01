@@ -47,11 +47,15 @@
         event.preventDefault(); // 기본동작 막기 왜? 새로고침하면 변수 저장해놓은거 다 날라감 폼의 기본동작은 새로고침
         const value = $input.value; //입력값
         $input.value = ""; // 인풋창 초기화
-        if(checkInput(value)){  //입력값 문제 없음
-         tries.push(value);
-        } else{
+        if(!checkInput(value)){ return; } 
+         //입력값 문제 없음
+        if(answer.join('') === value){ $logs.textContent = '홈런!';}
+        
+        
+        else{
           // 에러 있음
         }
+        tries.push(value);
       });
     </script>
   </body>
