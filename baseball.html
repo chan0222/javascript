@@ -21,7 +21,8 @@
 
       const numbers = []; // 숫자를 1-9까지 담아놓고
       for (let n = 0; n < 9; n += 1) {
-        numbers.push(n + 1);}
+        numbers.push(n + 1);
+      }
       const answer = [];
       for (let i = 0; i < 4; i += 1) {
         const index = Math.floor(Math.random() * numbers.length); // 0-8 정수 왜? 숫자를 고를땐 index로 고르니까 numbers.[4]=3 ; 맨처음은 1이 아니라 0이어서
@@ -39,7 +40,9 @@
         if (new Set(input).size !== 4) {
           return alert("중복되지 않게 입력하십시오");
         }
-        if(tries.includes(input)){ return alert('이미 시도한 값입니다.');}
+        if (tries.includes(input)) {
+          return alert("이미 시도한 값입니다.");
+        }
         return true; // 조건 다 맞으면 true로 보냄
       } //유효성 검사
 
@@ -47,14 +50,18 @@
         event.preventDefault(); // 기본동작 막기 왜? 새로고침하면 변수 저장해놓은거 다 날라감 폼의 기본동작은 새로고침
         const value = $input.value; //입력값
         $input.value = ""; // 인풋창 초기화
-        if(!checkInput(value)){ return; } 
-         //입력값 문제 없음
-        if(answer.join('') === value){ $logs.textContent = '홈런!';}
-        
-        
-        else{
-          // 에러 있음
+        if (!checkInput(value)) { // 입력값 이상함
+          return;
         }
+        //입력값 문제 없음
+        if (answer.join("") === value) {
+          $logs.textContent = "홈런!";
+        }
+        if (tries.length >= 9) { // 왜 숫자가 9?
+          $logs.appendChild(document.createTextNode( `패배! 정답은 ${answer.join("")}`));
+          return;
+        }
+
         tries.push(value);
       });
     </script>
