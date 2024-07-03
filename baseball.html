@@ -58,12 +58,24 @@
           $logs.textContent = "홈런!";
         }
         if (tries.length >= 9) { // 왜 숫자가 9?
-          $logs.appendChild(document.createTextNode( `패배! 정답은 ${answer.join("")}`));
+          $logs.appendChild(document.createTextNode( `패배! 정답은 ${answer.join("")}`)); //여러개 못 넣음 
           return;
         }
         // 몇 스트라이크 몇 볼인지 검사
-        
+        let strike = 0;
+        let ball = 0;
+        let out1 = 0;
+       
 
+        // answer: 3146, value: 1347;
+        for(let i =0; i <answer.length; i++){ // 한자리 한자리씩 보는것 
+          const index = value.indexOf(answer[i]);
+          if(index>-1){// 숫자가 같은것이 있다는 것
+            if(index === i){ // 숫자가 자리도 같은지 그럼 스트라이크
+              strike+=1;
+            }else{ball+=1;} // 아니면 숫자만 있으니까 볼
+          }
+        }
         tries.push(value);
       });
     </script>
