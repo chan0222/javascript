@@ -46,6 +46,7 @@
         return true; // 조건 다 맞으면 true로 보냄
       } //유효성 검사
 
+      let out = 0; // out 변수를 여기다가 만들어야함 why? 이벤트 리스너가 실행될때마다 'out'변수가 초기화되지 않도록 변수안에 선언하면 리스터가 호출될때마다 변수가 새로 초기화
       $form.addEventListener("submit", (event) => {
         event.preventDefault(); // 기본동작 막기 왜? 새로고침하면 변수 저장해놓은거 다 날라감 폼의 기본동작은 새로고침
         const value = $input.value; //입력값
@@ -64,9 +65,7 @@
         // 몇 스트라이크 몇 볼인지 검사
         let strike = 0;
         let ball = 0;
-        let out1 = 0;
-       
-
+  
         // answer: 3146, value: 1347;
         for(let i =0; i <answer.length; i++){ // 한자리 한자리씩 보는것 
           const index = value.indexOf(answer[i]);
@@ -75,19 +74,18 @@
               strike+=1;
             }else{ball+=1;} // 아니면 숫자만 있으니까 볼
           }
-
         }
         if(strike === 0 && ball === 0){
-            out1 +=1;
-            if(out1>2){
-            $logs.append(`${out1}아웃 탈락`);
+            out++; // 왜 out은 out++? out의 원래 값이 할당되고  
+            $logs.append(`${out}아웃`,document.createElement('br'));
+          }else{
+            $logs.append(`${value}:${strike} 스트라이크 ${ball} 볼 ${out}아웃`,document.createElement('br')); // 문자열은 바로 넣을수 있고 여러개 넣을수 있음. 실제로는 append 씀 
+          }
+        if(out>2){
+            $logs.append(`${out}아웃 탈락! 정답은 ${answer.join('')}`);
             $input.disabled =true;
             $button.disabled = true;
           }
-          }
-          
-       
-          $logs.append(`${value}:${strike} 스트라이크 ${ball} 볼 ${out1}아웃`,document.createElement('br')); // 문자열은 바로 넣을수 있고 여러개 넣을수 있음. 실제로는 append 씀 
         tries.push(value);
       });
     </script>
