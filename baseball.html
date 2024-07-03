@@ -75,7 +75,19 @@
               strike+=1;
             }else{ball+=1;} // 아니면 숫자만 있으니까 볼
           }
+
         }
+        if(strike === 0 && ball === 0){
+            out1 +=1;
+            if(out1>2){
+            $logs.append(`${out1}아웃 탈락`);
+            $input.disabled =true;
+            $button.disabled = true;
+          }
+          }
+          
+       
+          $logs.append(`${value}:${strike} 스트라이크 ${ball} 볼 ${out1}아웃`,document.createElement('br')); // 문자열은 바로 넣을수 있고 여러개 넣을수 있음. 실제로는 append 씀 
         tries.push(value);
       });
     </script>
