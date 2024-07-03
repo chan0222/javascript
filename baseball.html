@@ -65,6 +65,17 @@
         // 몇 스트라이크 몇 볼인지 검사
         let strike = 0;
         let ball = 0;
+
+answer.forEach((element, i)=>{
+  const index = value.indexOf(element);
+          if(index>-1){// 숫자가 같은것이 있다는 것
+            if(index === i){ // 숫자가 자리도 같은지 그럼 스트라이크
+              strike+=1;
+            }else{ball+=1;} // 아니면 숫자만 있으니까 볼
+          }
+}); // 함수를 넣어주는 메서드  역할- 각각 요소들에게 함수를 적용해서 실행을 해줌 const =[3,1,4,6];
+
+
   
         // answer: 3146, value: 1347;
         for(let i =0; i <answer.length; i++){ // 한자리 한자리씩 보는것 
