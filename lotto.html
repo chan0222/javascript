@@ -20,7 +20,7 @@
   </head>
   <body>
     <form id="form">
-        <input name="input" placeholder="숫자 6개를 쉼표로 구분해 입력하세요.">
+        <input name="input" id="input" placeholder="숫자 6개를 쉼표로 구분해 입력하세요.">
         <button>추첨</button>
     </form>
     <div id="result"> 당첨숫자:</div>
@@ -29,7 +29,20 @@
     const $form =document.querySelector('#form');
     const $result = document.querySelector('#result');
     const $bonus = document.querySelector('#bonus');
-    $form.addEventListener('submit',(event)=>{event.preventDefault();})
+    const $input = document.querySelector('#input');
+    $form.addEventListener('submit',(event)=>{event.preventDefault();
+        //검사
+        const inputValue = [];
+        $input.value = inputValue;
+console.log(inputValue);
+console.log($input.value);
+
+        function inputcheck(inputValue){
+        
+          if(inputValue !== 6){return alert('숫자 6개를 입력해주세요');}
+          if(new set(inputValue).size !== 6){return alert('중복되지 않게 입력해주세요');}
+        }
+    })
 </script>  
 </body>
 </html>
