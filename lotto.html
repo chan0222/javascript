@@ -20,29 +20,39 @@
   </head>
   <body>
     <form id="form">
-        <input name="input" id="input" placeholder="숫자 6개를 쉼표로 구분해 입력하세요.">
-        <button>추첨</button>
+      <input
+        name="input"
+        id="input"
+        placeholder="숫자 6개를 쉼표로 구분해 입력하세요."
+      />
+      <button>추첨</button>
     </form>
-    <div id="result"> 당첨숫자:</div>
-    <div id="bonus"> 보너스 숫자:</div>
-<script>
-    const $form =document.querySelector('#form');
-    const $result = document.querySelector('#result');
-    const $bonus = document.querySelector('#bonus');
-    const $input = document.querySelector('#input');
-    $form.addEventListener('submit',(event)=>{event.preventDefault();
+    <div id="result">당첨숫자:</div>
+    <div id="bonus">보너스 숫자:</div>
+    <script>
+      const $form = document.querySelector("#form");
+      const $result = document.querySelector("#result");
+      const $bonus = document.querySelector("#bonus");
+      const $input = document.querySelector("#input");
+      $form.addEventListener("submit", (event) => {
+        event.preventDefault();
         //검사
-        const inputValue = [];
-        $input.value = inputValue;
-console.log(inputValue);
-console.log($input.value);
-
-        function inputcheck(inputValue){
-        
-          if(inputValue !== 6){return alert('숫자 6개를 입력해주세요');}
-          if(new set(inputValue).size !== 6){return alert('중복되지 않게 입력해주세요');}
+        const string = event.target.input.value;
+        if (!!string) {
+          // 문자열의 앞뒤 있는 공백을 제거하는 메서드 빈문자열이면 false인데 부정연산자니까 트루가 되서 빈문자열이면 알림을 뜨게됨
+          return alert("숫자를 입력하세요.");
         }
-    })
-</script>  
-</body>
+        const myNumbers = string.split(",").map((v) => parseInt(v.trim())); //  '1,2,3,4,5,6'->['1','2','3','4','5','6',] | 띄어쓰기 있을까봐 trim() 을 해주고 -> 문자열에서 숫자로 바뀜 [1,2,3,4,5,6]
+        if (myNumbers.length !== 6) {
+          return alert("숫자를 6개를 입력하세요.");
+        } //숫자 6개를 입력했는지 검사
+      });
+      if (new Set(myNumbers).size !== 6) {
+       return alert("중복된 숫자를 입력했습니다.");
+      } // 중복된 숫자 검사
+      if(myNumbers.find((v)=>v>45|| v<1)){
+        return alert('1부터 45까지만 입력 할수 있습니다.');
+      }
+    </script>
+  </body>
 </html>
