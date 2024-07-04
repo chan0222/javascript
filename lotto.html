@@ -50,6 +50,12 @@
       if (new Set(myNumbers).size !== 6) {
        return alert("중복된 숫자를 입력했습니다.");
       } // 중복된 숫자 검사
+      // for(let i =0; i<myNumbers.length; i++){
+
+      //   if(!myNumbers.includes(myNumbers[i])){
+      //    alert("중복된 숫자를 입력했습니다.");  return;
+      //   }
+      // }
       if(myNumbers.find((v)=>v>45|| v<1)){
         return alert('1부터 45까지만 입력 할수 있습니다.');
       }
