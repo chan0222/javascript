@@ -36,9 +36,10 @@
       const $input = document.querySelector("#input");
       $form.addEventListener("submit", (event) => {
         event.preventDefault();
+        console.log("보내짐");
         //검사
         const string = event.target.input.value;
-        if (!!string) {
+        if (!string.trim()) {
           // 문자열의 앞뒤 있는 공백을 제거하는 메서드 빈문자열이면 false인데 부정연산자니까 트루가 되서 빈문자열이면 알림을 뜨게됨
           return alert("숫자를 입력하세요.");
         }
@@ -46,19 +47,21 @@
         if (myNumbers.length !== 6) {
           return alert("숫자를 6개를 입력하세요.");
         } //숫자 6개를 입력했는지 검사
+        // if (new Set(myNumbers).size !== 6){
+        //   return alert("중복된 숫자를 입력했습니다.");
+        // } // 중복된 숫자 검사
+        for (let i = 0; i < myNumbers.length; i++) {
+        for (let j = i + 1; j < myNumbers.length; j++) {
+            if (myNumbers[i] === myNumbers[j]) {
+                return alert("중복된 숫자를 입력했습니다.");
+            }
+        }
+    }
+          
+          if (myNumbers.find((v) => v > 45 || v < 1)) {
+            return alert("1부터 45까지만 입력 할수 있습니다.");
+          }
       });
-      if (new Set(myNumbers).size !== 6) {
-       return alert("중복된 숫자를 입력했습니다.");
-      } // 중복된 숫자 검사
-      // for(let i =0; i<myNumbers.length; i++){
-
-      //   if(!myNumbers.includes(myNumbers[i])){
-      //    alert("중복된 숫자를 입력했습니다.");  return;
-      //   }
-      // }
-      if(myNumbers.find((v)=>v>45|| v<1)){
-        return alert('1부터 45까지만 입력 할수 있습니다.');
-      }
     </script>
   </body>
 </html>
