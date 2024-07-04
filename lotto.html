@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 추첨기</title>
+    <style>
+      .ball {
+        display: inline-block;
+        border: 1x solid black;
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+        <input name="input" placeholder="숫자 6개를 쉼표로 구분해 입력하세요.">
+        <button>추첨</button>
+    </form>
+    <div id="result"> 당첨숫자:</div>
+    <div id="bonus"> 보너스 숫자:</div>
+<script>
+    const $form =document.querySelector('#form');
+    const $result = document.querySelector('#result');
+    const $bonus = document.querySelector('#bonus');
+    $form.addEventListener('submit',(event)=>{event.preventDefault();})
+</script>  
+</body>
+</html>
