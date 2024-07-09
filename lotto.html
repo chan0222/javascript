@@ -51,29 +51,42 @@
         //   return alert("중복된 숫자를 입력했습니다.");
         // } // 중복된 숫자 검사
         for (let i = 0; i < myNumbers.length; i++) {
-        for (let j = i + 1; j < myNumbers.length; j++) {
+          for (let j = i + 1; j < myNumbers.length; j++) {
             if (myNumbers[i] === myNumbers[j]) {
-                return alert("중복된 숫자를 입력했습니다.");
+              return alert("중복된 숫자를 입력했습니다.");
             }
-        }
-    } 
-          
-          if (myNumbers.find((v) => v > 45 || v < 1)) {
-            return alert("1부터 45까지만 입력 할수 있습니다.");
           }
-         const candidate = Array(45).fill().map((v,i)=>i+1); //1~45 까지 있는 배열
-         console.log(candidate);
-         const chosen=[]; // 골라진 숫자 배열
-         while(candidate.length){
-          const random = candidate.splice(Math.floor(Math.random()*candidate.length),1)[0];
-        chosen.push(random);}
-          //[0]을 붙이는 이유- splice 메서드는 배열을 반환하기 때문에 가장 첫번째 요소를 가져오려고
-        const winBalls= chosen.splice(0,6).sort((a,b)=> a-b);
-        const bonusBall=chosen[6];
-console.log(chosen);
-console.log(winBalls,bonusBall);
-        // 피셔-예이츠 셔플 알고리즘이라고 함. 
-        }); // 사용자 입력이 있을땐 검사가 필수다.
+        }
+
+        if (myNumbers.find((v) => v > 45 || v < 1)) {
+          return alert("1부터 45까지만 입력 할수 있습니다.");
+        }
+        const candidate = Array(45)
+          .fill()
+          .map((v, i) => i + 1); //1~45 까지 있는 배열
+        console.log(candidate);
+        const chosen = []; // 골라진 숫자 배열
+        // while (candidate.length) {
+        //   const random = candidate.splice(
+        //     Math.floor(Math.random() * candidate.length),
+        //     1
+        //   )[0];
+        //   chosen.push(random);
+        // }
+        for(let i = candidate.length; i<candidate.length; i++){
+          const random = candidate.splice(
+            Math.floor(Math.random() * candidate.length),
+            1
+          )[0];
+          chosen.push(random);
+        }
+        //[0]을 붙이는 이유- splice 메서드는 배열을 반환하기 때문에 가장 첫번째 요소를 가져오려고
+        const winBalls = chosen.splice(0, 6).sort((a, b) => a - b); // 정렬
+        const bonusBall = chosen[6];
+        console.log(chosen);
+        console.log(winBalls, bonusBall);
+        // 피셔-예이츠 셔플 알고리즘이라고 함.
+      }); // 사용자 입력이 있을땐 검사가 필수다.
     </script>
   </body>
 </html>
