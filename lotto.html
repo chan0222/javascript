@@ -86,23 +86,20 @@
         console.log(chosen);
         console.log(winBalls, bonusBall);
         // 피셔-예이츠 셔플 알고리즘이라고 함.
-        $result.addEventListener("submit",(event)=>{
-          // 동적으로 요소 추가하고 css 속성추가
-         
-          function ballResult(){ for(let i = winBalls.length; i>0; i--){
-            //1. 동적으로 만든 요소를 만들고 참조값을 p 변수에 담기
-            let ball1 = document.createElement("p");
-            //2. 만든 p 요소에 class 속성 추가하기 
-            ball1.setAttribute("class",ball);
-            //3. 만든 p요소에 innerText 추가하기
-            ball1.innerText =winBalls[i];
-//4. 만든 p 요소를 result의 자식 요소로 추가하기
-document.querySelector('#result').append(ball1);
-          }}
-          $result
-        setTimeout(ballResult,1000)
+       for(let i = 0; i<winBalls.length; i++){
+        setTimeout(()=>{
+        const $ball =document.createElement('div');
+        $ball.className = 'ball';
+        $ball.textContent = winBalls[i];
+        $result.appendChild($ball);
+       },(i+1)*1000);}
 
-      })
+       setTimeout(()=>{
+        const $ball =document.createElement('div');
+        $ball.className = 'ball';
+        $ball.textContent = bonusBall;
+        $bonus.appendChild($ball);
+       },7000);
         }); // 사용자 입력이 있을땐 검사가 필수다.
 
    
