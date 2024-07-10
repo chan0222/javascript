@@ -13,15 +13,25 @@
 <body>
    <input type="text" id="diceCount" placeholder="주사위가 몇개인가요?">
    <button>버튼</button>
+   <p id="result"></p>
    <script>
     const $input = document.querySelector("#diceCount");
     const $button = document.querySelector('button');
+    const $result = document.querySelector('#result');
     $button.addEventListener('click',(event)=>{
         let diceCount = parseInt($input.value); // 주사위가 몇개인지 저장하기
         console.log(diceCount);
         // 주사위 1-6 까지 랜덤으로 뽑아서 주사위 숫자 만큼 새로운 배열에 넣어서 정렬하기 중복 허용
-        
-        
+        const numbers = Array(6).fill().map((n,i)=>i+1);
+        console.log(numbers);
+        reseult=[];
+        for(let i=0; i<diceCount; i++){
+            const randomValue = numbers[Math.floor(Math.random()* numbers.length)];
+            reseult.push(randomValue);
+            console.log(reseult);
+            $result.textContent = reseult;
+        }
+      // 왜 랜덤 밸류에 언티파인이 들어가는 거지?
     })
    </script>
 
