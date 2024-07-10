@@ -40,7 +40,9 @@
         $ball.textContent = value;
         $target.appendChild($ball);
       }
-      $form.addEventListener("submit", (event) => {
+      const setTimeoutPromise = (ms) => new Promise((resolve,reject)=>{setTimeout(resolve,ms);});
+      // astnc/await 문법은 프로미스만 적용할수 있기 때문에 프로미스로 만들어줘야함
+      $form.addEventListener("submit", async(event) => {
         event.preventDefault();
         console.log("보내짐");
         //검사
@@ -83,15 +85,17 @@
         console.log(winBalls, bonusBall);
         // 피셔-예이츠 셔플 알고리즘이라고 함.
        for(let i = 0; i<winBalls.length; i++){
-        setTimeout(()=>{
+       await setTimeoutPromise(1000);
           resultBall( $result, winBalls[i]);
-        },(i+1)*1000);
        }
-       setTimeout(()=>{
+       await setTimeoutPromise(1000);
         resultBall( $bonus, bonusBall);
-       },7000);
         }); // 사용자 입력이 있을땐 검사가 필수다.
-
+// 프로미스 안쓸때 0초일때 모든 타이머를 등록해 놓음
+// - 1초뒤에 1번공, 2초뒤에 2번공, 3초뒤에 3번공,,,
+//---------> 왜 await setTimeoutPromise(1000); 에서 초가 1초?
+//1초 기다리고 1번공, 1초 기다리고 2번공, 1초 기다리고 3번공...
+//1초 기다리고 보너스공
    
     </script>
   </body>
