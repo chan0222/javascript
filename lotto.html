@@ -66,7 +66,7 @@ const num = parseInt(value);
         }
         
         $target.appendChild($ball);
-        $button.disabled =true;
+       
 
       }
       const setTimeoutPromise = (ms) =>
@@ -76,11 +76,15 @@ const num = parseInt(value);
       // astnc/await 문법은 프로미스만 적용할수 있기 때문에 프로미스로 만들어줘야함
       let clicked = false; // 버튼을 클릭한것 
       async function lottoStart(event) {
+        event.preventDefault(); //반드시 실행해야지 페이지 이동현상이 없음 
         if(clicked){
           return;
         }
         clicked =true;
-        event.preventDefault();
+        // 추첨 버튼 다시 누를때 그전에 있던거 없어지고 다시 추첨
+        $result.innerHTML = '당첨숫자:';
+$bonus.innerHTML = '보너스 숫자:';
+   
         console.log("보내짐");
         //검사
         const string = event.target.input.value;
@@ -157,10 +161,7 @@ const num = parseInt(value);
    
       $form.addEventListener("submit",lottoStart
      );
-    // $button.addEventListener('click',()=>{
-    //   $input.value = '';
-    
-    // })
+  
     </script>
   </body>
 </html>
