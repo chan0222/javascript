@@ -34,19 +34,57 @@
       const $result = document.querySelector("#result");
       const $bonus = document.querySelector("#bonus");
       const $input = document.querySelector("#input");
+      const $button = document.querySelector('button');
       function resultBall($target, value) {
         const $ball = document.createElement("div");
+        // 숫자 범위에 따라 공에 색을 넣어보기 
         $ball.className = "ball";
         $ball.textContent = value;
+     
+const num = parseInt(value);
+        switch(true){
+          case num < 10:
+          $ball.style.backgroundColor = 'red';
+          $ball.style.color = 'white';
+          break;
+          case num >= 10 && num < 20 : // 자바스크립트 에서는  10 <= num <20 로 범위가 안됨
+          $ball.style.backgroundColor = 'orange';
+          break;
+          case num >= 20 && num < 30 :
+          $ball.style.backgroundColor = 'yellow';
+          break;
+          case num >= 30 && num < 40 :
+          $ball.style.backgroundColor = 'blue';
+          $ball.style.color = 'white';
+          break;
+          case num >= 40 && num < 45 :
+          $ball.style.backgroundColor = 'green';
+          $ball.style.color = 'white';
+          break;
+          default:
+          break;
+        }
+        
         $target.appendChild($ball);
+       
+
       }
       const setTimeoutPromise = (ms) =>
         new Promise((resolve, reject) => {
           setTimeout(resolve, ms);
         });
       // astnc/await 문법은 프로미스만 적용할수 있기 때문에 프로미스로 만들어줘야함
-      $form.addEventListener("submit", async (event) => {
-        event.preventDefault();
+      let clicked = false; // 버튼을 클릭한것 
+      async function lottoStart(event) {
+        event.preventDefault(); //반드시 실행해야지 페이지 이동현상이 없음 
+        if(clicked){
+          return;
+        }
+        clicked =true;
+        // 추첨 버튼 다시 누를때 그전에 있던거 없어지고 다시 추첨
+        $result.innerHTML = '당첨숫자:';
+$bonus.innerHTML = '보너스 숫자:';
+   
         console.log("보내짐");
         //검사
         const string = event.target.input.value;
@@ -118,8 +156,12 @@
         }
         if(count === 4){return alert(" 4개 다 맞추셨습니다.");}
         if(count === 3){return alert(" 로또어렵죠?");}
+        clicked =false;
       }
-    );
+   
+      $form.addEventListener("submit",lottoStart
+     );
+  
     </script>
   </body>
 </html>
