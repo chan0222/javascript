@@ -74,7 +74,12 @@ const num = parseInt(value);
           setTimeout(resolve, ms);
         });
       // astnc/await 문법은 프로미스만 적용할수 있기 때문에 프로미스로 만들어줘야함
+      let clicked = false; // 버튼을 클릭한것 
       async function lottoStart(event) {
+        if(clicked){
+          return;
+        }
+        clicked =true;
         event.preventDefault();
         console.log("보내짐");
         //검사
@@ -147,8 +152,9 @@ const num = parseInt(value);
         }
         if(count === 4){return alert(" 4개 다 맞추셨습니다.");}
         if(count === 3){return alert(" 로또어렵죠?");}
+        clicked =false;
       }
-    
+   
       $form.addEventListener("submit",lottoStart
      );
     // $button.addEventListener('click',()=>{
