@@ -26,34 +26,32 @@
       const $paper = document.querySelector("#paper");
       const $score = document.querySelector("#score");
       const IMG_URL = "./rsp.png";
-      $computer.style.background = `url(${IMG_URL}) 0 0`; // 가위 -220px 바위 -440px 보
+      $computer.style.background = `url(${IMG_URL}) -464px 0`; // 가위 -220px 바위 -440px 보
       $computer.style.backgroundSize = "auto 200px";
       // 객체 변수명을 고유한것
       const rspX = {
-        scissorsX: "-0",
-        rockX: "-220",
-        paperX: "-440",
+        scissors: '-0',
+        rock: '-220px',
+        paper: '-440px',
       };
-      let coord = rspX.scissorsX; //x좌표를 저장하는 변수
-      setInterval(() => {
-         console.log("Current coord:", coord);
-        if (coord=== rspX.scissorsX) {
-          //가위면
-          coord = rspX.rockX; // 바위로 변경
-          $computer.style.background = `url(${IMG_URL}) ${rspX.rockX} 0`;
-          $computer.style.backgroundSize = "auto 200px";
-        } else if (coord===rspX.rockX) {
-          //바위면
-          coord = rspX.paperX; //보로 변경
-          $computer.style.background = `url(${IMG_URL}) ${rspX.paperX} 0`;
-          $computer.style.backgroundSize = "auto 200px";
-        } else if(coord=== rspX.paperX ) {
+      let computerChoice = 'scissors';//x좌표를 저장하는 변수
+      const changeComputerHand = ()=>{
+        console.log("Current coord:", computerChoice);
+        if (computerChoice=== 'rock') {
+        
+          computerChoice = 'scissors';
+        } else if (computerChoice==='scissors') {
+          computerChoice = 'paper';  //보로 변경  
+        } else if(computerChoice=== 'paper' ) {
           // 보 면
-          coord = rspX.scissorsX; // 가위로 변경
-          $computer.style.background = `url(${IMG_URL}) ${rspX.scissorsX} 0`;
-          $computer.style.backgroundSize = "auto 200px"; // 백그라운드랑 백그라운드 사이즈는 한세트로 적어줘야함
+          computerChoice = 'rock'; // 가위로 변경
         }
-      },50);
+        // 변수값이 들어감 
+        $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+          $computer.style.backgroundSize = "auto 200px"; // 백그라운드랑 백그라운드 사이즈는 한세트로 적어줘야함
+      }
+      setInterval(changeComputerHand,50); // 함수자리에는 함수를 넣기
+
     </script>
   </body>
 </html>
