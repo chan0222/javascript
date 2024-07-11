@@ -40,28 +40,30 @@
         // 숫자 범위에 따라 공에 색을 넣어보기 
         $ball.className = "ball";
         $ball.textContent = value;
-        if(parseInt(value)<10){
+     
+const num = parseInt(value);
+        switch(true){
+          case num < 10:
           $ball.style.backgroundColor = 'red';
-          $ball.style.textEmphasisColor = 'white';
-        
-        }else{
-        if(10<=parseInt(value)<20){
-            $ball.style.backgroundColor = 'orange';}
-            else{
-              
-            }
-          if(20<=parseInt(value)<30){$ball.style.backgroundColor = 'yellow';}
-          else if(30<=parseInt(value)<40){
+          $ball.style.color = 'white';
+          break;
+          case num >= 10 && num < 20 : // 자바스크립트 에서는  10 <= num <20 로 범위가 안됨
+          $ball.style.backgroundColor = 'orange';
+          break;
+          case num >= 20 && num < 30 :
+          $ball.style.backgroundColor = 'yellow';
+          break;
+          case num >= 30 && num < 40 :
           $ball.style.backgroundColor = 'blue';
-          $ball.style.textEmphasisColor = 'white';
-        } else{
-          
+          $ball.style.color = 'white';
+          break;
+          case num >= 40 && num < 45 :
           $ball.style.backgroundColor = 'green';
-          $ball.style.textEmphasisColor = 'white';
-        
+          $ball.style.color = 'white';
+          break;
+          default:
+          break;
         }
-
-        switch(ㅣㄷㅅ){}
         
         $target.appendChild($ball);
         $button.disabled =true;
@@ -148,7 +150,7 @@
       }
     
       $form.addEventListener("submit",lottoStart
-     );}
+     );
     // $button.addEventListener('click',()=>{
     //   $input.value = '';
     
