@@ -30,28 +30,44 @@
       $computer.style.backgroundSize = "auto 200px";
       // 객체 변수명을 고유한것
       const rspX = {
-        scissors: '-0',
-        rock: '-220px',
-        paper: '-440px',
+        scissors: "-0",
+        rock: "-220px",
+        paper: "-440px",
       };
-      let computerChoice = 'scissors';//x좌표를 저장하는 변수
-      const changeComputerHand = ()=>{
-        console.log("Current coord:", computerChoice);
-        if (computerChoice=== 'rock') {
-        
-          computerChoice = 'scissors';
-        } else if (computerChoice==='scissors') {
-          computerChoice = 'paper';  //보로 변경  
-        } else if(computerChoice=== 'paper' ) {
-          // 보 면
-          computerChoice = 'rock'; // 가위로 변경
-        }
-        // 변수값이 들어감 
-        $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
-          $computer.style.backgroundSize = "auto 200px"; // 백그라운드랑 백그라운드 사이즈는 한세트로 적어줘야함
-      }
-      setInterval(changeComputerHand,50); // 함수자리에는 함수를 넣기
 
+      let computerChoice = "scissors"; //x좌표를 저장하는 변수
+
+      const changeComputerHand = () => {
+       
+        if (computerChoice === "rock") {
+          computerChoice = "scissors";
+        } else if (computerChoice === "scissors") {
+          computerChoice = "paper"; //보로 변경
+        } else if (computerChoice === "paper") {
+          // 보 면
+          computerChoice = "rock"; // 가위로 변경
+        }
+        // 변수값이 들어감
+        $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+        $computer.style.backgroundSize = "auto 200px"; // 백그라운드랑 백그라운드 사이즈는 한세트로 적어줘야함
+      };
+      // 함수자리에는 함수를 넣기
+
+      let IntervalId = setInterval(changeComputerHand, 50);
+
+      const clickButton = () => {
+        clearInterval(IntervalId);
+        console.log(IntervalId);
+        //점수 계산 및 화면 표시
+        setTimeout(() => {
+          IntervalId = setInterval(changeComputerHand, 50); // 타이머마다 아이디가 달라져서 달라진 아이디를 변수에 저장을 해야함 
+        }, 1000); 
+        // setTimeout은 아무도 클리어를 안해줘서 문제가 생김 버그
+
+      };
+      $rock.addEventListener("click",clickButton);
+      $scissors.addEventListener("click",clickButton);
+      $paper.addEventListener("click",clickButton);
     </script>
   </body>
 </html>
