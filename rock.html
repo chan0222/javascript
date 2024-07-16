@@ -36,8 +36,9 @@
       };
 
       let computerChoice = "scissors"; //x좌표를 저장하는 변수
-      let score = 0; // 점수 초기화 
-      let playTime = 3;
+      let me = 0; // 점수 초기화 
+      let computer = 0;
+      let playTime = 5;
 
       const changeComputerHand = () => {
        
@@ -82,31 +83,31 @@ let message;
 
 // 2,-1은 승리조건이고, -2,1은 패배조건, 점수표 참고
 if([2,-1].includes(diff)){
-  score += 1;
+ me += 1;
+ computer -= 1 ;
   message = '승리';
-  console.log(score);
+  playTime -= 1;
+  //console.log(score);
 }else if([-2,1].includes(diff)){
-  score -= 1;
+ me -= 1;
+ computer -= 1;
+  playTime -= 1;
   message = '패배';
 }else {
   message = '무승부';
 }
-$score.textContent = `${message} 총 ${score}점`
+$score.textContent = `${message} 총 $ me}점`
 //점수 계산 및 화면 표시
 setTimeout(() => {
   clickable =true;
   // clearInterval(IntervalId); //클릭하고 나서 1초 후에 실행 그전에 있는  중복된 아이디들 제거하기 
   IntervalId = setInterval(changeComputerHand, 50); // 타이머마다 아이디가 달라져서 달라진 아이디를 변수에 저장을 해야함 
 }, 1000); 
-playTime -= 1;
-}
 
-if(score === 2){console.log(`${score}점 2점을 먼저 득점 하셔서 승리하였습니다.`);
-  $rock.disabled = true; $scissors.disabled = true; $paper.disabled = true;} else if(score === -2){
-    console.log(`${score}점 졌습니다.`);
-    $rock.disabled = true; $scissors.disabled = true; $paper.disabled = true;}
-        // setTimeout은 아무도 클리어를 안해줘서 문제가 생김 버그
-      };
+}
+if (me === 3){console.log(`$ me} 승리!`)}else if (computer === 3){`$ me} 패배!`}
+
+};
       $rock.addEventListener("click",clickButton);
       $scissors.addEventListener("click",clickButton);
       $paper.addEventListener("click",clickButton);
