@@ -37,7 +37,7 @@
 
       let computerChoice = "scissors"; //x좌표를 저장하는 변수
       let score = 0; // 점수 초기화 
-      let playTime = 5;
+      let playTime = 3;
 
       const changeComputerHand = () => {
        
@@ -100,9 +100,12 @@ setTimeout(() => {
 }, 1000); 
 playTime -= 1;
 }
-if(playTime === 0){$rock.disabled = true; $scissors.disabled = true; $paper.disabled = true;}
-        // setTimeout은 아무도 클리어를 안해줘서 문제가 생김 버그
 
+if(score === 2){console.log(`${score}점 2점을 먼저 득점 하셔서 승리하였습니다.`);
+  $rock.disabled = true; $scissors.disabled = true; $paper.disabled = true;} else if(score === -2){
+    console.log(`${score}점 졌습니다.`);
+    $rock.disabled = true; $scissors.disabled = true; $paper.disabled = true;}
+        // setTimeout은 아무도 클리어를 안해줘서 문제가 생김 버그
       };
       $rock.addEventListener("click",clickButton);
       $scissors.addEventListener("click",clickButton);
