@@ -51,7 +51,7 @@
           // 끝시간 재기
           endTime = new Date();
           $result.textContent = `${endTime - startTime}ms`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기 
-          $screen.classList.replace("waiting");
+          $screen.classList.replace('now',"waiting");
           $screen.textContent = " 클릭해서 시작하세요.";
           //시간 차이 저장하기
         }
