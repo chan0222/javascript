@@ -27,21 +27,35 @@
     <div id="screen" class="waiting">클릭해서 시작해보세요</div>
     <div id="result"></div>
     <script>
-      const $screen =document.querySelector('#screen');
-      const $result = document.querySelector('#result');
+      const $screen = document.querySelector("#screen");
+      const $result = document.querySelector("#result");
 
-      $screen.className ; // waiting
+      let startTime;
+      let endTime;
 
       // waiting 화면일때 실행하는
-      $screen.addEventListener('click',()=>{
-          if($screen.classList.contains('waiting')){
-//  클릭하면 대기화면에서 준비화면 으로 바뀌게 한다. >> 원래 있던 waiting 클래스를 제거하고, ready 클래스를 추가하기
-$screen.classList.replace('waiting','ready');
-$screen.textContent = '초록색이 되면 클릭하세요.'
-          }
-          else if($screen.classList.contains('ready')){}
-          else if($screen.classList.contains('now')){}
-      })
+      $screen.addEventListener("click", () => {
+        if ($screen.classList.contains("waiting")) {
+          //  클릭하면 대기화면에서 준비화면 으로 바뀌게 한다. >> 원래 있던 waiting 클래스를 제거하고, ready 클래스를 추가하기
+          $screen.classList.replace("waiting", "ready");
+          $screen.textContent = "초록색이 되면 클릭하세요.";
+          //빨간화면임- 빨간화면이 될때 랜덤 타이머 작동 후에 초록 화면을 띄워줘야함 (빨간 화면을 클릭하는 것이 아님)
+          setTimeout(() => {
+            startTime = new Date();
+            $screen.classList.replace("ready", "now");
+            $screen.textContent = "클릭하세요!";
+            //첫 시간 재기
+          }, Math.floor(Math.random() * 1000) + 2000); //2000 ~ 3000 사이 수 2초에서 3초 사이 2000≤ x * 1000+2000 < 3000
+        } else if ($screen.classList.contains("ready")) {
+        } else if ($screen.classList.contains("now")) {
+          // 끝시간 재기
+          endTime = new Date();
+          $result.textContent = `${endTime - startTime}ms`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기 
+          $screen.classList.replace("waiting");
+          $screen.textContent = " 클릭해서 시작하세요.";
+          //시간 차이 저장하기
+        }
+      });
     </script>
   </body>
 </html>
