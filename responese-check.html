@@ -30,9 +30,9 @@
       const $screen = document.querySelector("#screen");
       const $result = document.querySelector("#result");
 
-      let startTime;
+      let startTime; // let은 블록 스코프 여서 함수안에있는 변수는 함수 실행후 날아가서 전역 스코프로 함
       let endTime;
-
+      const records = [];
       // waiting 화면일때 실행하는
       $screen.addEventListener("click", () => {
         if ($screen.classList.contains("waiting")) {
@@ -50,8 +50,8 @@
         } else if ($screen.classList.contains("now")) {
           // 끝시간 재기
           endTime = new Date();
-          $result.textContent = `${endTime - startTime}ms`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기 
-          $screen.classList.replace('now',"waiting");
+          $result.textContent = `${endTime - startTime}ms`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기
+          $screen.classList.replace("now", "waiting");
           $screen.textContent = " 클릭해서 시작하세요.";
           //시간 차이 저장하기
         }
