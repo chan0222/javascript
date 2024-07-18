@@ -60,16 +60,23 @@
           console.log(current);
           //평균 구하기
         const average = records.reduce((a,c) => a+c) /records.length;
-        records.sort(
-          function(a,b){return a-b}
-        )
+        // records.sort(
+        //   function(a,b){return a-b}
+        // )
         
-          $result.textContent = `현재 ${current}ms, 평균: ${average}ms, 
-          1등:${records[0]},
-          2등:${records[1]},
-          3등:${records[2]},
-          4등:${records[3]},
-          5등:${records[4]},`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기
+        //   $result.textContent = `현재 ${current}ms, 평균: ${average}ms, 
+        //   1등:${records[0]},
+        //   2등:${records[1]},
+        //   3등:${records[2]},
+        //   4등:${records[3]},
+        //   5등:${records[4]},`; 
+          // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기
+
+          const topFive = records.sort((p,c)=> p-c).slice(0,5);
+          topFive.forEach((top,index)=>{
+            $result.append(document.createElement('br'),
+          `$(index +1)위: ${top}ms`,)
+          });
           startTime = null;
           endTime = null; // 혹시나 예전 값이 들어갔을 경우를 방지 
           $screen.classList.replace("now", "waiting");
