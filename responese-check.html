@@ -48,9 +48,18 @@
           }, Math.floor(Math.random() * 1000) + 2000); //2000 ~ 3000 사이 수 2초에서 3초 사이 2000≤ x * 1000+2000 < 3000
         } else if ($screen.classList.contains("ready")) {
         } else if ($screen.classList.contains("now")) {
+          // 배열에 모아두기
           // 끝시간 재기
           endTime = new Date();
-          $result.textContent = `${endTime - startTime}ms`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기
+          const current = endTime - startTime;
+          records.push(current);
+          console.log(endTime,startTime);
+          console.log(current);
+          //평균 구하기
+        const average = records.reduce((a,c) => a+c) /records.length;
+          $result.textContent = `현재 ${current}ms, 평균: ${average}ms`; // 더 현재에ㅔ 가까울수록 숫자가 크다 더큰 시간에서 작은 시간 빼기
+          startTime = null;
+          endTime = null; // 혹시나 예전 값이 들어갔을 경우를 방지 
           $screen.classList.replace("now", "waiting");
           $screen.textContent = " 클릭해서 시작하세요.";
           //시간 차이 저장하기
