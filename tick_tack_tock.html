@@ -37,9 +37,9 @@
         </tr>
     </table> -->
     <script>
-        const {body} = document; // === const body = document.body; document라는 객체 안에 body의 속성을 가진 element
-    const $result = document.createElement('div');
-    const $table = document.createElement("table");
+        const {body, createElement } = document; // === const body = document.body; document라는 객체 안에 body의 속성을 가진 element
+    const $result = createElement('div');
+    const $table = createElement("table");
       let turn = "O";
       const data = []; //반복문으로 데이터를 적기
       for (let i = 0; i < 3; i++) {
@@ -48,9 +48,9 @@
       // 배열 따라서 테이블을 만들어주면 됨
       // 테이블은 따로 변수로 만들어주는게 좋음 tr - 행 td - 열
       for (let i = 0; i < 3; i++) {
-        const $tr = document.createElement("tr");
+        const $tr = createElement("tr");
         for (let i = 0; i < 3; i++) {
-          const $td = document.createElement("td");
+          const $td = createElement("td");
           $td.addEventListener("click", (event) => {
             // 칸에 글자가 있나?
            if(event.target.textContent) return; // 칸에 글자가 있으면 함수 멈춰버리기 조건에 해당 안되면 바로 종료 되어버리게 하는게 더 편함
@@ -64,8 +64,8 @@
         }
         $table.append($tr); // tr이 테이블 안에 3번 들어감
       }
-      document.body.append($table);
-      document.body.append($result);
+      body.append($table);
+      body.append($result);
     </script>
   </body>
 </html>
