@@ -39,13 +39,17 @@
         for(let i =0; i<3; i++){data.push([]);} // 배열 안에 작은 배열이 3개가 들어가기 때문에 이차원 배열
         // 배열 따라서 테이블을 만들어주면 됨
         // 테이블은 따로 변수로 만들어주는게 좋음 tr - 행 td - 열
-        const $table = document.createElement('table')
+        const $table = document.createElement('table');
         for(let i = 0; i < 3; i++){
             const $tr = document.createElement('tr');
-            $table.append($tr); // tr이 테이블 안에 3번 들어감
             for(let i = 0; i < 3; i++){
-                $tr.append(document.createElement('td')); // td 가 tr 안에 3개 들어감 
+                const $td = document.createElement('td');
+                $td.addEventListener('click',()=>{
+                    console.log('clicked')
+                })
+                $tr.append($td); // td 가 tr 안에 3개 들어감 
             }
+            $table.append($tr); // tr이 테이블 안에 3번 들어감
         }
         document.body.append($table);
     </script>
