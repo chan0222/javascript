@@ -4,8 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>틱택토 게임</title>
+    <style>
+        table {
+            border-collapse: collappse; 
+        } 
+       td {
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+       }
+    </style> // border-collapse 표의 테두리와 셀의 테두리 사이의 간격을 어떻게 처리할 지 정한다. 
 </head>
 <body>
-    
+    <!-- <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table> -->
+    <script>
+        const data = []; //반복문으로 데이터를 적기
+        for(let i =0; i<3; i++){data.push([]);} // 배열 안에 작은 배열이 3개가 들어가기 때문에 이차원 배열
+        // 배열 따라서 테이블을 만들어주면 됨
+        // 테이블은 따로 변수로 만들어주는게 좋음 tr - 행 td - 열
+        const $table = document.createElement('table')
+        document.body.append($table);
+    </script>
 </body>
 </html>
